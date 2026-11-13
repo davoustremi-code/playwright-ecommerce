@@ -1,0 +1,15 @@
+
+# Playwright
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/playwright/.auth/
+
+# Variables d'environnement (informations sensibles)
+.env.*
+
+# Allure (fichiers générés à chaque lancement)
+allure-results/
+allure-report/
