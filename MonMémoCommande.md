@@ -55,7 +55,7 @@ npx allure open allure-report                    # ouvrir le rapport dans le nav
 ## 2. Choisir l'environnement
 
 ```powershell
-$env:ENV="local"                                 # lit env/.env.local
+$env:ENV="recette"                                 # lit env/.env.local
 $env:ENV="prod"                                  # lit env/.env.prod
 npx playwright test
 ```
