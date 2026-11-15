@@ -5,6 +5,7 @@ export class CartPage {
   readonly page: Page;
   readonly productName: Locator;
   readonly checkoutButton: Locator;
+  readonly priceInCart: Locator;
   
 
 
@@ -13,6 +14,7 @@ export class CartPage {
     this.page = page;
     this.productName = page.locator('a').filter({ hasText: 'Clavier Mécanique RGB' });
     this.checkoutButton = page.getByRole('button', { name: 'Passer au paiement' });
+    this.priceInCart = page.getByText('€ / unité');
   }
 
   // 3. Méthodes : les actions

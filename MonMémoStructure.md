@@ -221,9 +221,11 @@ Dans le test : `import { test, expect } from '../fixtures';` (et non `'@playwrig
 
 ```ts
 import { fakerFR as faker } from '@faker-js/faker';   // fakerFR = données françaises
+.toLowerCase() ==> pour email en minuscule si majuscule reçue
 
 const name = faker.person.lastName();
 const address = faker.location.streetAddress();
+const email = faker.internet.email().toLowerCase(); si données reçues en majucule conversation en minuscule
 const city = faker.location.city();
 const zipCode = faker.location.zipCode('#####');      // 5 chiffres
 const cardExpiry = faker.date.future().toLocaleDateString('fr-FR', { month: '2-digit', year: '2-digit' }); // ex : 07/27
@@ -231,6 +233,19 @@ const cardExpiry = faker.date.future().toLocaleDateString('fr-FR', { month: '2-d
 
 - `faker.name` / `faker.address` = anciennes versions → utiliser `faker.person` / `faker.location`.
 - Faker s'utilise dans le **test**, pas dans la POM.
+
+
+### Assembler des textes (template literal)
+
+Texte entre **backticks** `` ` `` (AltGr + 7) + `${variable}` pour insérer une valeur :
+
+```ts
+const firstName = faker.person.firstName();
+const lastName = faker.person.lastName();
+const fullName = `${firstName} ${lastName}`;   // ex : "Jean Dupont"
+```
+
+Déjà utilisé dans `playwright.config.ts` : `` `env/.env.${process.env.ENV}` `
 
 ### .env (données qui changent selon l'environnement)
 

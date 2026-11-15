@@ -5,6 +5,7 @@ import { CatalogPage } from '../pages/CatalogPage';
 import { ProductDetailPage } from '../pages/ProductDetailPage';
 import { CartPage } from '../pages/CartPage';
 import { HeaderComponent } from '../pages/components/HeaderComponent';
+import { CheckoutPage } from '../pages/CheckoutPage';
 
 
 type Fixtures = {
@@ -14,6 +15,7 @@ type Fixtures = {
   ProductDetailPage: ProductDetailPage;                          // ② type
   CartPage: CartPage;                          // ② type
   HeaderComponent: HeaderComponent;                          // ② type
+  CheckoutPage: CheckoutPage;                          // ② type
 };
 
 const test = base.extend<Fixtures>({
@@ -35,7 +37,9 @@ const test = base.extend<Fixtures>({
   HeaderComponent: async ({ page }, use) => {  // ③ extend
     await use(new HeaderComponent(page));
   },
-
+  CheckoutPage: async ({ page }, use) => {  // ③ extend
+    await use(new CheckoutPage(page));
+  },
 });
 
 const expect = base.expect;
