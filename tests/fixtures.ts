@@ -1,17 +1,19 @@
 import { test as base } from '@playwright/test';
 import { HomePage } from '../pages/HomePage';
 import { AuthentificationPage } from '../pages/AuthentificationPage';
-import { ProductsPage } from '../pages/ProductsPage';
-import { ProductPage } from '../pages/ProductPage';
+import { CatalogPage } from '../pages/CatalogPage';
+import { ProductDetailPage } from '../pages/ProductDetailPage';
 import { CartPage } from '../pages/CartPage';
+import { HeaderComponent } from '../pages/components/HeaderComponent';
 
 
 type Fixtures = {
   HomePage: HomePage;                               // ② type
   AuthentificationPage: AuthentificationPage;       // ② type
-  ProductsPage: ProductsPage;                          // ② type
-  ProductPage: ProductPage;                          // ② type
+  CatalogPage: CatalogPage;                          // ② type
+  ProductDetailPage: ProductDetailPage;                          // ② type
   CartPage: CartPage;                          // ② type
+  HeaderComponent: HeaderComponent;                          // ② type
 };
 
 const test = base.extend<Fixtures>({
@@ -21,16 +23,18 @@ const test = base.extend<Fixtures>({
   AuthentificationPage: async ({ page }, use) => {  // ③ extend
     await use(new AuthentificationPage(page));
   },
-  ProductsPage: async ({ page }, use) => {  // ③ extend
-    await use(new ProductsPage(page));
+  CatalogPage: async ({ page }, use) => {  // ③ extend
+    await use(new CatalogPage(page));
   },
-  ProductPage: async ({ page }, use) => {  // ③ extend
-    await use(new ProductPage(page));
+  ProductDetailPage: async ({ page }, use) => {  // ③ extend
+    await use(new ProductDetailPage(page));
   },
   CartPage: async ({ page }, use) => {  // ③ extend
     await use(new CartPage(page));
   },
-  
+  HeaderComponent: async ({ page }, use) => {  // ③ extend
+    await use(new HeaderComponent(page));
+  },
 
 });
 

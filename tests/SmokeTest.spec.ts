@@ -1,9 +1,8 @@
 import { test, expect } from './fixtures';
-import { ProductsPage } from '../pages/ProductsPage';
 import {faker} from '@faker-js/faker';
 
 
-test('Test E2E', async ({ HomePage, AuthentificationPage, ProductsPage, ProductPage, CartPage }) => {
+test('Test E2E', async ({ HomePage, AuthentificationPage, CatalogPage, ProductDetailPage, CartPage, HeaderComponent }) => {
 
     await test.step('Se rendre sur la page accueil', async () => {
         await HomePage.goto();
@@ -11,11 +10,11 @@ test('Test E2E', async ({ HomePage, AuthentificationPage, ProductsPage, ProductP
     });
 
     await test.step('Vérifier la présence de l\'icone du profil', async () => {
-        await expect(HomePage.profileLink).toBeVisible();
+        await expect(HeaderComponent.profileLink).toBeVisible();
     });
 
     await test.step('se rendre sur la page authentification ', async () => {
-        await HomePage.profile();
+        await HeaderComponent.profile();
         await expect(AuthentificationPage.page).toHaveURL(/auth/);
     });
     await test.step('cliquer sur le bouton inscription', async () => {
@@ -38,24 +37,24 @@ test('Test E2E', async ({ HomePage, AuthentificationPage, ProductsPage, ProductP
     });
 
     await test.step('se rendre sur la page produits', async () => {
-        await HomePage.goToProducts();
-        await expect(ProductsPage.page).toHaveURL(/products/);
+        await HeaderComponent.goToProducts();
+        await expect(CatalogPage.page).toHaveURL(/products/);
     });
 
     await test.step('choisir un produit', async () => {
-        await ProductsPage.chooseProducts();
-        await expect(ProductsPage.page).toHaveURL(/product\/4/);
+        await CatalogPage.chooseProducts();
+        await expect(CatalogPage.page).toHaveURL(/product\/4/);
     });
 
     await test.step('Ajouter le produit au panier', async () => {
-        await ProductPage.chooseProduct();
-        await expect(ProductPage.CartCount).toBeVisible();
-        await expect(ProductPage.productTitle).toBeVisible();
-        await expect(ProductPage.priceProduct).toBeVisible();
+        await ProductDetailPage.chooseProduct();
+        await expect(ProductDetailPage.CartCount).toBeVisible();
+        await expect(ProductDetailPage.productTitle).toBeVisible();
+        await expect(ProductDetailPage.priceProduct).toBeVisible();
     });
 
     await test.step('Vérifier le contenu du panier', async () => {
-        await ProductPage.viewCart();
+        await HeaderComponent.goToCart();
         await expect(CartPage.page).toHaveURL(/cart/);
         await expect(CartPage.productName).toBeVisible();
     });

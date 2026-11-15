@@ -1,15 +1,15 @@
 import { Page, Locator } from '@playwright/test';
 
-export class ProductsPage {
+export class CatalogPage {
   // 1. Propriétés : la page + les locators
   readonly page: Page;
-  readonly productsItem: Locator;
+  readonly catalogProductItem: Locator;
 
 
   // 2. Constructeur : on définit les locators
   constructor(page: Page) {
     this.page = page;
-    this.productsItem = page.getByTestId('product-container-4');
+    this.catalogProductItem = page.getByTestId('product-container-4');
     
   }
 
@@ -18,7 +18,7 @@ export class ProductsPage {
     await this.page.goto(process.env.URL!);
   }
   async chooseProducts() {
-    await this.productsItem.click();
+    await this.catalogProductItem.click();
   }
 
   }

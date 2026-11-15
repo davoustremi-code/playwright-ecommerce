@@ -1,11 +1,10 @@
 import { Page, Locator } from '@playwright/test';
 
-export class ProductPage {
+export class ProductDetailPage {
   // 1. Propriétés : la page + les locators
   readonly page: Page;
   readonly addToCartButton: Locator;
   readonly CartCount: Locator;
-  readonly cartLink: Locator;
   readonly productTitle: Locator;
   readonly priceProduct: Locator;
 
@@ -15,7 +14,6 @@ export class ProductPage {
     this.page = page;
     this.addToCartButton = page.getByRole('button', { name: 'Ajouter au panier' });
     this.CartCount = page.getByTestId('cart-count');
-    this.cartLink = page.getByTestId('cart-button');
     this.productTitle = page.getByRole('heading', { name: 'Clavier Mécanique RGB' });
     this.priceProduct = page.locator('span.text-4xl.font-bold');
   }
@@ -26,10 +24,7 @@ export class ProductPage {
   }
   async chooseProduct() {
     await this.addToCartButton.click();
-  }
-
-  async viewCart() {
-    await this.cartLink.click();
+ 
   }
 
 }
