@@ -2,7 +2,7 @@ import { test, expect } from './fixtures';
 import {fakerFR as faker} from '@faker-js/faker';
 
 
-test('Test E2E', async ({ HomePage, AuthentificationPage, CatalogPage, ProductDetailPage, CartPage, HeaderComponent, CheckoutPage }) => {
+test('Parcours achat : depuis inscription jusqua validation commande', { tag: '@smoke' },async ({ HomePage, AuthentificationPage, CatalogPage, ProductDetailPage, CartPage, HeaderComponent, CheckoutPage }) => {
     const firstName = faker.person.firstName();
     const lastName = faker.person.lastName();
     const fullName = `${firstName} ${lastName}`;
@@ -12,6 +12,10 @@ test('Test E2E', async ({ HomePage, AuthentificationPage, CatalogPage, ProductDe
     const city = faker.location.city();
     const zipCode = faker.location.zipCode();
     const password = faker.internet.password();
+    const cardNumber = faker.finance.creditCardNumber();
+    const cardName = fullName;
+    const expirationDate = '12/25';
+    const cvc = '123';
     let productPrice: string | null;
     await test.step('Se rendre sur la page accueil', async () => {
         await HomePage.goto();
@@ -103,5 +107,21 @@ test('Test E2E', async ({ HomePage, AuthentificationPage, CatalogPage, ProductDe
             await expect(CheckoutPage.PaymentExpirationDateInput).toBeVisible();
             await expect(CheckoutPage.PaymentCvvInput).toBeVisible();
             await expect(CheckoutPage.PaymentSubmitButton).toContainText(productPrice!);
+        });
+
+        await test.step('Remplir les informations de paiement', async () => {
+            await CheckoutPage.fillPaymentCardNumber(cardNumber);
+            await expect(CheckoutPage.PaymentCardNumberInput).toHaveValue(cardNumber);
+            await CheckoutPage.fillPaymentCardName(cardName);
+            await expect(CheckoutPage.PaymentCardNameInput).toHaveValue(cardName);
+            await CheckoutPage.fillPaymentExpirationDate(expirationDate);
+            await expect(CheckoutPage.PaymentExpirationDateInput).toHaveValue(expirationDate);
+            await CheckoutPage.fillPaymentCvc(cvc);
+            await expect(CheckoutPage.PaymentCvvInput).toHaveValue(cvc);
+            });
+        await test.step('Soumettre le paiement et vérifier la confirmation de commande', async () => {
+            await CheckoutPage.submitPayment();
+            await expect(CheckoutPage.OrderConfirmationCard).toBeVisible();
+            await expect(CheckoutPage.OrderNumber).toBeVisible();
         });
     });

@@ -16,6 +16,8 @@ export class CheckoutPage {
   readonly PaymentExpirationDateInput: Locator;
   readonly PaymentCvvInput: Locator;
   readonly PaymentSubmitButton: Locator;
+  readonly OrderConfirmationCard: Locator;
+  readonly OrderNumber: Locator;
 
   // 2. Constructeur : on définit les locators
   constructor(page: Page) {
@@ -33,6 +35,8 @@ export class CheckoutPage {
     this.PaymentExpirationDateInput = page.getByTestId('payment-expiry-input');
     this.PaymentCvvInput = page.getByTestId('payment-cvv-input');
     this.PaymentSubmitButton = page.getByTestId('payment-submit-button');
+    this.OrderConfirmationCard = page.getByTestId('order-confirmation-card');
+    this.OrderNumber = page.getByTestId('order-number');
   }
 
   // 3. Méthodes : les actions
