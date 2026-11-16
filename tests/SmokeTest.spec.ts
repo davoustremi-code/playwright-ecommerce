@@ -37,9 +37,13 @@ test('Test E2E', async ({ HomePage, AuthentificationPage, CatalogPage, ProductDe
 
     await test.step('Remplir le formulaire dinscription', async () => {
         await AuthentificationPage.nameInput.fill(fullName);
+        await expect(AuthentificationPage.nameInput).toHaveValue(fullName);
         await AuthentificationPage.emailInput.fill(email);
-         await AuthentificationPage.passwordInput.fill(password);
+        await expect(AuthentificationPage.emailInput).toHaveValue(email);
+        await AuthentificationPage.passwordInput.fill(password);
+        await expect(AuthentificationPage.passwordInput).toHaveValue(password);
         await AuthentificationPage.ConfirmPasswordInput.fill(password);
+        await expect(AuthentificationPage.ConfirmPasswordInput).toHaveValue(password);
         await AuthentificationPage.signupButton.click();
         await expect(AuthentificationPage.successMessage).toBeVisible();
     });
@@ -76,7 +80,7 @@ test('Test E2E', async ({ HomePage, AuthentificationPage, CatalogPage, ProductDe
     });
 
     await test.step('Remplir les informations de livraison', async () => {
-        // Attendre le pré-remplissage de l'e-mail : signale que les données du compte sont chargées
+        // Attendre le pré-remplissage de l'e-mail : signale que les données du compte sont chargées (sinon la livraison ne passe pas au paiement)
         await expect(CheckoutPage.ShippingMailImput).toHaveValue(email);
         await CheckoutPage.fillFirstName(firstName);
         await expect(CheckoutPage.ShippingFirstNameImput).toHaveValue(firstName);
