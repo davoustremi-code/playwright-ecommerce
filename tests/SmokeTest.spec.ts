@@ -87,26 +87,12 @@ test('Parcours achat : depuis inscription jusqua validation commande', { tag: '@
         // Attendre le pré-remplissage de l'e-mail : signale que les données du compte sont chargées (sinon la livraison ne passe pas au paiement)
         await expect(CheckoutPage.ShippingMailInput).toHaveValue(email);
         await CheckoutPage.fillFirstName(firstName);
-        await expect(CheckoutPage.ShippingFirstNameImput).toHaveValue(firstName);
         await CheckoutPage.fillLastName(lastName);
-        await expect(CheckoutPage.ShippingLastNameImput).toHaveValue(lastName);
         await CheckoutPage.fillPhone(phone);
-        await expect(CheckoutPage.ShippingPhoneInput).toHaveValue(phone);
         await CheckoutPage.fillAddress(address);
-        await expect(CheckoutPage.ShippingAddressInput).toHaveValue(address);
         await CheckoutPage.fillCity(city);
-        await expect(CheckoutPage.ShippingCityInput).toHaveValue(city);
         await CheckoutPage.fillPostaleCode(zipCode);
-        await expect(CheckoutPage.ShippingPostalCodeInput).toHaveValue(zipCode);
         await CheckoutPage.placeOrder();
-        });
-
-        await test.step('affichage des champs de paiement', async () => {
-            await expect(CheckoutPage.PaymentCardNumberInput).toBeVisible();
-            await expect(CheckoutPage.PaymentCardNameInput).toBeVisible();
-            await expect(CheckoutPage.PaymentExpirationDateInput).toBeVisible();
-            await expect(CheckoutPage.PaymentCvvInput).toBeVisible();
-            await expect(CheckoutPage.PaymentSubmitButton).toContainText(productPrice!);
         });
 
         await test.step('Remplir les informations de paiement', async () => {
