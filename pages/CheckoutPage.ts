@@ -5,11 +5,11 @@ export class CheckoutPage {
   readonly page: Page;
   readonly ShippingFirstNameImput: Locator;
   readonly ShippingLastNameImput: Locator;
-  readonly ShippingMailImput: Locator;
-  readonly ShippingPhoneImput: Locator;
-  readonly ShippingAddressImput: Locator;
-  readonly ShippingCityImput: Locator;
-  readonly ShippingPostaleCodeImput: Locator;
+  readonly ShippingMailInput: Locator;
+  readonly ShippingPhoneInput: Locator;
+  readonly ShippingAddressInput: Locator;
+  readonly ShippingCityInput: Locator;
+  readonly ShippingPostalCodeInput: Locator;
   readonly ShippingSubmitButton: Locator;
   readonly PaymentCardNumberInput: Locator;
   readonly PaymentCardNameInput: Locator;
@@ -22,11 +22,11 @@ export class CheckoutPage {
     this.page = page;
     this.ShippingFirstNameImput = page.getByTestId('shipping-firstname-input');
     this.ShippingLastNameImput = page.getByTestId('shipping-lastname-input');
-    this.ShippingMailImput = page.getByTestId('shipping-email-input');
-    this.ShippingPhoneImput = page.getByTestId('shipping-phone-input');
-    this.ShippingAddressImput = page.getByTestId('shipping-address-input');
-    this.ShippingCityImput = page.getByTestId('shipping-city-input');
-    this.ShippingPostaleCodeImput = page.getByTestId('shipping-postalcode-input');
+    this.ShippingMailInput = page.getByTestId('shipping-email-input');
+    this.ShippingPhoneInput = page.getByTestId('shipping-phone-input');
+    this.ShippingAddressInput = page.getByTestId('shipping-address-input');
+    this.ShippingCityInput = page.getByTestId('shipping-city-input');
+    this.ShippingPostalCodeInput = page.getByTestId('shipping-postalcode-input');
     this.ShippingSubmitButton = page.getByTestId('shipping-submit-button');
     this.PaymentCardNumberInput = page.getByTestId('payment-cardnumber-input');
     this.PaymentCardNameInput = page.getByTestId('payment-cardname-input');
@@ -47,19 +47,19 @@ export class CheckoutPage {
     await this.ShippingLastNameImput.fill(lastName);
   }
   async fillMail(mail: string) {
-    await this.ShippingMailImput.fill(mail);
+    await this.ShippingMailInput.fill(mail);
   }
   async fillPhone(phone: string) {
-    await this.ShippingPhoneImput.fill(phone);
+    await this.ShippingPhoneInput.fill(phone);
   }
   async fillAddress(address: string) {
-    await this.ShippingAddressImput.fill(address);
+    await this.ShippingAddressInput.fill(address);
   }
   async fillCity(city: string) {
-    await this.ShippingCityImput.fill(city);
+    await this.ShippingCityInput.fill(city);
   }
   async fillPostaleCode(postaleCode: string) {
-    await this.ShippingPostaleCodeImput.fill(postaleCode);
+    await this.ShippingPostalCodeInput.fill(postaleCode);
   }
   async placeOrder() {
     await this.ShippingSubmitButton.click();
