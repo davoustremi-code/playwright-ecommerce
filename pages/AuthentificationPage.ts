@@ -34,7 +34,7 @@ export class AuthentificationPage {
 
   // 3. Méthodes : les actions
   async goto() {
-    await this.page.goto(process.env.URL!);
+    await this.page.goto('/auth');
   }
 
   async inscription() {
