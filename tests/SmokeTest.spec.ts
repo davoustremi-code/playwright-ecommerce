@@ -31,7 +31,7 @@ test('Parcours achat : depuis inscription jusqua validation commande', { tag: '@
         await expect(AuthentificationPage.page).toHaveURL(/auth/);
     });
     await test.step('cliquer sur le bouton inscription', async () => {
-        await AuthentificationPage.inscriptionLink.click();
+        await AuthentificationPage.openSignupTab();
         await expect(AuthentificationPage.nameInput).toBeVisible();
         await expect(AuthentificationPage.emailInput).toBeVisible();
         await expect(AuthentificationPage.passwordInput).toBeVisible();
@@ -49,7 +49,7 @@ test('Parcours achat : depuis inscription jusqua validation commande', { tag: '@
         await AuthentificationPage.ConfirmPasswordInput.fill(password);
         await expect(AuthentificationPage.ConfirmPasswordInput).toHaveValue(password);
         await AuthentificationPage.signupButton.click();
-        await expect(AuthentificationPage.successMessage).toBeVisible();
+        await expect(AuthentificationPage.signupSuccessMessage).toBeVisible();
     });
 
     await test.step('se rendre sur la page produits', async () => {

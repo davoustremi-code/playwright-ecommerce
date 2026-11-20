@@ -3,26 +3,30 @@ import { Page, Locator } from '@playwright/test';
 export class AuthentificationPage {
   // 1. Propriétés : la page + les locators
   readonly page: Page;
-  readonly inscriptionLink: Locator;
- readonly nameInput: Locator;
- readonly emailInput: Locator;
- readonly passwordInput: Locator;
- readonly ConfirmPasswordInput: Locator;
- readonly signupButton: Locator;
- readonly successMessage: Locator;
+  readonly signupTab: Locator;
+  readonly loginTab: Locator;
+  readonly nameInput: Locator;
+  readonly emailInput: Locator;
+  readonly passwordInput: Locator;
+  readonly ConfirmPasswordInput: Locator;
+  readonly signupButton: Locator;
+  readonly loginButton: Locator;
+  readonly signupSuccessMessage: Locator;
 
 
 
   // 2. Constructeur : on définit les locators
   constructor(page: Page) {
     this.page = page;
-    this.inscriptionLink = page.getByTestId('signup-tab');
+    this.signupTab = page.getByTestId('signup-tab');
+    this.loginTab = page.getByTestId('login-tab');
     this.nameInput = page.getByTestId('signup-name-input');
     this.emailInput = page.getByTestId('signup-email-input');
     this.passwordInput = page.getByTestId('signup-password-input');
     this.ConfirmPasswordInput = page.getByTestId('signup-confirm-password-input');
     this.signupButton = page.getByTestId('signup-submit-button');
-    this.successMessage = page.getByText('Inscription réussie !', { exact: true });
+    this.loginButton = page.getByTestId('login-submit-button');
+    this.signupSuccessMessage = page.getByText('Inscription réussie !', { exact: true });
   }
 
   async fillSignupForm(name: string, email: string, password: string) {
@@ -37,11 +41,15 @@ export class AuthentificationPage {
     await this.page.goto('/auth');
   }
 
-  async inscription() {
-    await this.inscriptionLink.click();
+  async openSignupTab() {
+    await this.signupTab.click();
   }
 
-  async submitSignupForm() {
-    await this.signupButton.click();
+  async openLoginTab() {
+    await this.loginTab.click();
+  }
+
+  async login() {
+    await this.loginButton.click();
   }
 }
