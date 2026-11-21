@@ -67,7 +67,7 @@ Cocher `[x]` quand le scénario est automatisé. Noter les anomalies dans la sec
 
 ## Connexion / Inscription – `/auth` (P1)
 
-- [FAIT] Bascule entre les onglets Connexion et Inscription
+- [x] Bascule entre les onglets Connexion et Inscription
 - [ ] Connexion avec identifiants valides
 - [ ] Connexion avec mauvais mot de passe
 - [ ] Connexion avec champs vides
