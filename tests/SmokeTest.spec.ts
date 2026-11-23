@@ -32,20 +32,20 @@ test('Parcours achat : depuis inscription jusqua validation commande', { tag: '@
     });
     await test.step('cliquer sur le bouton inscription', async () => {
         await AuthentificationPage.openSignupTab();
-        await expect(AuthentificationPage.nameInput).toBeVisible();
-        await expect(AuthentificationPage.emailInput).toBeVisible();
-        await expect(AuthentificationPage.passwordInput).toBeVisible();
+        await expect(AuthentificationPage.signupNameInput).toBeVisible();
+        await expect(AuthentificationPage.signupEmailInput).toBeVisible();
+        await expect(AuthentificationPage.signupPasswordInput).toBeVisible();
         await expect(AuthentificationPage.ConfirmPasswordInput).toBeVisible();
         await expect(AuthentificationPage.signupButton).toBeVisible();
     });
 
     await test.step('Remplir le formulaire dinscription', async () => {
-        await AuthentificationPage.nameInput.fill(fullName);
-        await expect(AuthentificationPage.nameInput).toHaveValue(fullName);
-        await AuthentificationPage.emailInput.fill(email);
-        await expect(AuthentificationPage.emailInput).toHaveValue(email);
-        await AuthentificationPage.passwordInput.fill(password);
-        await expect(AuthentificationPage.passwordInput).toHaveValue(password);
+        await AuthentificationPage.signupNameInput.fill(fullName);
+        await expect(AuthentificationPage.signupNameInput).toHaveValue(fullName);
+        await AuthentificationPage.signupEmailInput.fill(email);
+        await expect(AuthentificationPage.signupEmailInput).toHaveValue(email);
+        await AuthentificationPage.signupPasswordInput.fill(password);
+        await expect(AuthentificationPage.signupPasswordInput).toHaveValue(password);
         await AuthentificationPage.ConfirmPasswordInput.fill(password);
         await expect(AuthentificationPage.ConfirmPasswordInput).toHaveValue(password);
         await AuthentificationPage.signupButton.click();
