@@ -5,13 +5,18 @@ export class AuthentificationPage {
   readonly page: Page;
   readonly signupTab: Locator;
   readonly loginTab: Locator;
-  readonly nameInput: Locator;
-  readonly emailInput: Locator;
-  readonly passwordInput: Locator;
+  readonly signupNameInput: Locator;
+  readonly signupEmailInput: Locator;
+  readonly signupPasswordInput: Locator;
   readonly ConfirmPasswordInput: Locator;
   readonly signupButton: Locator;
   readonly loginButton: Locator;
+  readonly loginEmailInput: Locator;
+  readonly loginPasswordInput: Locator;
   readonly signupSuccessMessage: Locator;
+  readonly notification: Locator;
+  readonly loginPasswordErrorMessage: Locator;
+  readonly loginEmailErrorMessage: Locator;
 
 
 
@@ -20,19 +25,23 @@ export class AuthentificationPage {
     this.page = page;
     this.signupTab = page.getByTestId('signup-tab');
     this.loginTab = page.getByTestId('login-tab');
-    this.nameInput = page.getByTestId('signup-name-input');
-    this.emailInput = page.getByTestId('signup-email-input');
-    this.passwordInput = page.getByTestId('signup-password-input');
+    this.signupNameInput = page.getByTestId('signup-name-input');
+    this.signupEmailInput = page.getByTestId('signup-email-input');
+    this.signupPasswordInput = page.getByTestId('signup-password-input');
     this.ConfirmPasswordInput = page.getByTestId('signup-confirm-password-input');
     this.signupButton = page.getByTestId('signup-submit-button');
     this.loginButton = page.getByTestId('login-submit-button');
+    this.loginEmailInput = page.getByTestId('login-email-input');
+    this.loginPasswordInput = page.getByTestId('login-password-input');
     this.signupSuccessMessage = page.getByText('Inscription réussie !', { exact: true });
+    this.notification = page.getByRole ('region', { name: 'Notifications (F8)' }).getByRole('status');
+    this.loginPasswordErrorMessage = page.getByText('Le mot de passe doit contenir au moins 6 caractères', { exact: true });
+    this.loginEmailErrorMessage = page.getByText('Adresse email invalide', { exact: true });
   }
-
   async fillSignupForm(name: string, email: string, password: string) {
-    await this.nameInput.fill(name);
-    await this.emailInput.fill(email);
-    await this.passwordInput.fill(password);
+    await this.signupNameInput.fill(name);
+    await this.signupEmailInput.fill(email);
+    await this.signupPasswordInput.fill(password);
     await this.ConfirmPasswordInput.fill(password);
   }
 
@@ -49,7 +58,9 @@ export class AuthentificationPage {
     await this.loginTab.click();
   }
 
-  async login() {
+  async login(email: string, password: string) {
+    await this.loginEmailInput.fill(email);
+    await this.loginPasswordInput.fill(password);
     await this.loginButton.click();
   }
 }
